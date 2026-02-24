@@ -8,12 +8,7 @@ import { fetchIngredients } from '../../services/actions/ingredients';
 
 export const BurgerIngredients: FC = () => {
   /** TODO: взять переменные из стора */
-  const dispatch = useDispatch();
   const { ingredients } = useSelector((state) => state.ingredients);
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, []);
 
   const buns = ingredients.filter((i) => i.type === 'bun');
   const mains = ingredients.filter((i) => i.type === 'main');
@@ -35,6 +30,16 @@ export const BurgerIngredients: FC = () => {
   const [saucesRef, inViewSauces] = useInView({
     threshold: 0
   });
+
+  const { bun, ingredients: constructorIngredients } = useSelector(
+    (state) => state.burgerConstructor
+  );
+
+  const countIngredient = (id: string) => {
+    if (bun?._id === id) return 1;
+    const count = constructorIngredients.filter((i) => i._id === id).length;
+    return count || undefined;
+  };
 
   useEffect(() => {
     if (inViewBuns) {

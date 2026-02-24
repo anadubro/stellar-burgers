@@ -11,7 +11,7 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((state) => state.burgerConstructor);
   const [orderRequest, setOrderRequest] = useState(false);
-  const [orderModalData, setOrderModalData] = useState<any>(null);
+  const [orderModalData, setOrderModalData] = useState<TOrder | null>(null);
   const constructorItems = { bun, ingredients };
   const isAuth = useSelector((state) => state.user.isAuth);
   const navigate = useNavigate();

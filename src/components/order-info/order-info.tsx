@@ -2,7 +2,7 @@ import { FC, useMemo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
-import { TIngredient } from '@utils-types';
+import { TIngredient, TOrder } from '@utils-types';
 import { useSelector } from '../../services/store';
 import { getOrderByNumberApi } from '../../utils/burger-api';
 
@@ -10,7 +10,7 @@ export const OrderInfo: FC = () => {
   /** TODO: взять переменные orderData и ingredients из стора */
   const { number } = useParams();
   const ingredients = useSelector((state) => state.ingredients.ingredients);
-  const [orderData, setOrderData] = useState<any>(null);
+  const [orderData, setOrderData] = useState<TOrder | null>(null);
 
   useEffect(() => {
     if (number) {

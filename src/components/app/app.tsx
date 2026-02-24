@@ -19,6 +19,7 @@ import ProtectedRoute from '../ProtectedRoute';
 import { useDispatch } from '../../services/store';
 import { fetchUser } from '../../services/actions/user';
 import { useEffect } from 'react';
+import { fetchIngredients } from '../../services/actions/ingredients';
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(fetchUser());
+    dispatch(fetchIngredients());
   }, []);
 
   const background = location.state?.background;
@@ -140,19 +142,6 @@ const App = () => {
           />
         </Routes>
       )}
-      {/* {isIngredientsLoading ? (
-        <Preloader />
-      ) : error ? (
-        <div className={`${styles.error} text text_type_main-medium pt-4`}>
-          {error}
-        </div>
-      ) : ingredients.length > 0 ? (
-        <ConstructorPage />
-      ) : (
-        <div className={`${styles.title} text text_type_main-medium pt-4`}>
-          Нет игредиентов
-        </div>
-      )} */}
     </div>
   );
 };

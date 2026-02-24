@@ -14,8 +14,8 @@ export const constructorSlice = createSlice({
     addBun(state, action: PayloadAction<TIngredient>) {
       state.bun = action.payload;
     },
-    addIngredient(state, action: PayloadAction<TIngredient>) {
-      state.ingredients.push({ ...action.payload, id: uuidv4() });
+    addIngredient(state, action: PayloadAction<TConstructorIngredient>) {
+      state.ingredients.push(action.payload);
     },
     removeIngredient(state, action: PayloadAction<string>) {
       state.ingredients = state.ingredients.filter(
